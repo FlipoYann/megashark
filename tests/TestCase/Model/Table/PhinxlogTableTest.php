@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\MoviesTable;
+use App\Model\Table\PhinxlogTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\MoviesTable Test Case
+ * App\Model\Table\PhinxlogTable Test Case
  */
-class MoviesTableTest extends TestCase
+class PhinxlogTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\MoviesTable
+     * @var \App\Model\Table\PhinxlogTable
      */
-    public $Movies;
+    public $Phinxlog;
 
     /**
      * Fixtures
@@ -24,8 +24,7 @@ class MoviesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.movies',
-        'app.showtimes'
+        'app.phinxlog'
     ];
 
     /**
@@ -36,8 +35,8 @@ class MoviesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Movies') ? [] : ['className' => MoviesTable::class];
-        $this->Movies = TableRegistry::get('Movies', $config);
+        $config = TableRegistry::exists('Phinxlog') ? [] : ['className' => PhinxlogTable::class];
+        $this->Phinxlog = TableRegistry::get('Phinxlog', $config);
     }
 
     /**
@@ -47,7 +46,7 @@ class MoviesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Movies);
+        unset($this->Phinxlog);
 
         parent::tearDown();
     }
