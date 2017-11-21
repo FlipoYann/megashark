@@ -23,6 +23,10 @@
             <td><?= h($movie->name) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('ReleaseDate') ?></th>
+            <td><?= h($movie->releaseDate) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($movie->id) ?></td>
         </tr>
