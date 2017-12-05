@@ -19,12 +19,13 @@ class ShowtimesController extends AppController
      */
     public function index()
     {
-        $showtimes = $this->paginate($this->Showtimes);
-    
-        //$query = $this->Movies->find('all')->where(['id' => 1]);
-        //$this->set('movie', $this->paginate($query));
-       
-        $this->set(compact('showtimes'));
+        
+
+        $showtimes = $this->paginate = [
+            'contain' => ['Movies', 'Rooms']
+        ];
+
+        $this->set('showtimes', $this->paginate($this->Showtimes));
         $this->set('_serialize', ['showtimes']);
     }
 
@@ -37,8 +38,10 @@ class ShowtimesController extends AppController
      */
     public function view($id = null)
     {
+        
+        
         $showtime = $this->Showtimes->get($id, [
-            'contain' => []
+            'contain' => ['Movies', 'Rooms']
         ]);
 
         $this->set('showtime', $showtime);
@@ -79,6 +82,8 @@ class ShowtimesController extends AppController
      */
     public function edit($id = null)
     {
+        $movies = $this->Showtimes->Movies->find('List');
+        $rooms = $this->Showtimes->Rooms->find('List');
         $showtime = $this->Showtimes->get($id, [
             'contain' => []
         ]);
@@ -91,6 +96,8 @@ class ShowtimesController extends AppController
             }
             $this->Flash->error(__('The showtime could not be saved. Please, try again.'));
         }
+        $this->set(compact('rooms'));
+        $this->set(compact('movies'));
         $this->set(compact('showtime'));
         $this->set('_serialize', ['showtime']);
     }
